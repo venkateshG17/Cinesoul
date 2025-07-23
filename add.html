@@ -1,0 +1,202 @@
+<!-- add-page.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add to Watchlist | Cinesoul</title>
+    <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/1e/80/e7/1e80e76eca155db4517aadd80997d8ae.jpg" style="border-radius: 50px;">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: white;
+    }
+
+       .navbar .nav-link:hover {
+  color: red !important;
+  transition: 0.3s;
+}
+.navbar-brand span {
+  letter-spacing: 1px;
+}
+
+.btn-outline-danger:hover {
+  background-color: red;
+  color: white;
+}    .rdj-ring {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#e50914 0% 100%);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rdj-ring::after {
+    content: "RDJ";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e50914;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .rdj-ring img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+    .movie-card {
+      background-color: #9C27B0;
+    }
+
+    .suggestion-card:hover {
+      transform: scale(1.03);
+      transition: all 0.2s ease-in-out;
+    }
+
+    .search-result {
+      background-color: #333;
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .btn-add {
+      background-color: #FF5722;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #111;">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex flex-column" href="/index.html">
+      <span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px;">
+        <span style="color: white;">Cine</span><span style="color: red;">Soul</span>
+      </span>
+      <span style="font-size: 8px; color: #ccc;margin-top: -5px;">The List You Asked For</span>
+    </a>
+
+    <!-- Toggle for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-white" target="_blank" href="/Dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="/add.html">
+                      <button class="btn btn-danger mx-2" target="_blank">Add</button>
+          </a>
+        </li>
+<li class="nav-item">
+  <div class="rdj-ring">
+    <img src="https://pbs.twimg.com/media/E5mNwFyVUAgnchN?format=jpg&name=large" alt="Profile">
+  </div>
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+  <div class="container py-5">
+    <h2 class="text-center mb-4">🎬 Add to Your To-Watch List</h2>
+
+    <!-- Search -->
+    <div class="input-group mb-4">
+      <input type="text" id="searchInput" class="form-control" placeholder="Search for movies, series or anime...">
+      <button class="btn btn-primary" id="searchBtn">Search</button>
+    </div>
+
+    <!-- Suggestions -->
+    <h5>✨ Suggested</h5>
+    <div class="row g-3 mb-4">
+      <!-- Static Suggestions -->
+      <div class="col-md-3">
+        <div class="p-3 text-white rounded suggestion-card" style="background-color: #9C27B0; cursor: pointer;" onclick="selectSuggested('Feel the Beat', 'Movie')">
+          <h6>🎬 Feel the Beat</h6>
+          <small>Type: Movie</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 text-white rounded suggestion-card" style="background-color: #FF5722; cursor: pointer;" onclick="selectSuggested('Ted Lasso', 'Series')">
+          <h6>📺 Ted Lasso</h6>
+          <small>Type: Series</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 text-white rounded suggestion-card" style="background-color: #4CAF50; cursor: pointer;" onclick="selectSuggested('Demon Slayer', 'Anime')">
+          <h6>🍥 Demon Slayer</h6>
+          <small>Type: Anime</small>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 text-white rounded suggestion-card" style="background-color: #3F51B5; cursor: pointer;" onclick="selectSuggested('The Notebook', 'Movie')">
+          <h6>💞 The Notebook</h6>
+          <small>Type: Movie</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search Results Area -->
+    <div id="searchResults" class="search-result d-none">
+      <div class="d-flex justify-content-between align-items-center">
+        <div>
+          <h5 id="resultTitle">Title Here</h5>
+          <p id="resultType">Type</p>
+        </div>
+        <button class="btn btn-add" onclick="addToWatchlist()">+ Add to To-Watch</button>
+      </div>
+    </div>
+
+  </div>
+
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+    let selectedItem = {};
+
+    // Handle Suggestion Click
+    function selectSuggested(title, type) {
+      selectedItem = { title, type };
+      document.getElementById('resultTitle').innerText = title;
+      document.getElementById('resultType').innerText = type;
+      document.getElementById('searchResults').classList.remove('d-none');
+    }
+
+    // Add to Local Storage
+    function addToWatchlist() {
+      let watchlist = JSON.parse(localStorage.getItem('toWatchList')) || [];
+      if (!watchlist.some(item => item.title === selectedItem.title)) {
+        watchlist.push(selectedItem);
+        localStorage.setItem('toWatchList', JSON.stringify(watchlist));
+        alert(`✅ ${selectedItem.title} added to your To-Watch list!`);
+      } else {
+        alert('⚠️ Already in your To-Watch list.');
+      }
+    }
+
+    // (Optional) Later: Add API Fetch using token
+    document.getElementById('searchBtn').addEventListener('click', function () {
+      const query = document.getElementById('searchInput').value.trim();
+      if (query) {
+        // For now, just use static mock
+        selectSuggested(query, 'Movie');
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineSoul</title>
+  <link rel="icon" type="image/png" href="https://i.pinimg.com/736x/1e/80/e7/1e80e76eca155db4517aadd80997d8ae.jpg" style="border-radius: 50px;">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+  <style>
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .navbar .nav-link:hover {
+  color: red !important;
+  transition: 0.3s;
+}
+.navbar-brand span {
+  letter-spacing: 1px;
+}
+
+.btn-outline-danger:hover {
+  background-color: red;
+  color: white;
+}
+.footer-icon {
+  color: white;
+  transition: color 0.3s ease;
+}
+
+.footer-icon:hover {
+  color: red;
+}
+    .hero {
+      background: url('https://wallpapercave.com/wp/wp14825647.webp') no-repeat center center/cover;
+      height: 80vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      color: white;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding-left: 5vw;
+    }
+    .btn-play {
+      background-color: #8000ff;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+      .rdj-ring {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: conic-gradient(#e50914 0% 100%);
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rdj-ring::after {
+    content: "RDJ";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #e50914;
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: bold;
+    padding: 2px 6px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+
+  .rdj-ring img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+    .poster-card img,
+  .anime-card {
+    height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: .5s;
+  }
+
+  .anime-card {
+    height: 280px;
+    width: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+    .poster-card img:hover {
+      transform: scale(1.08);
+    }
+    .card h6 {
+    font-size: 1rem;
+    margin: 0;
+  }
+  .card p {
+    font-size: 0.875rem;
+    margin: 0.25rem 0 0;
+  }
+  .anime-card {
+    height: 280px;
+    width: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+
+  .no1-badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(255, 0, 0, 0.85);
+    color: white;
+    padding: 6px 12px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+  }
+
+  .anime-card-large {
+    height: 350px;
+    width: 230px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+
+  .franchise-card {
+    perspective: 1000px;
+    height: 250px;
+  }
+
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+
+  .franchise-card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    backface-visibility: hidden;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-front {
+    filter: brightness(0.8);
+  }
+
+  .card-back {
+    background-color: #222;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg);
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .card-back h5 {
+    margin-bottom: 0.5rem;
+  }
+
+   .series-card {
+    height: 280px;
+    width: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .series-card-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+  }
+
+  .series-info {
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 0.75rem;
+    padding: 8px;
+    text-align: center;
+    transition: bottom 0.3s ease-in-out;
+  }
+
+  .series-card-container:hover .series-card {
+    transform: scale(1.05);
+  }
+
+  .series-card-container:hover .series-info {
+    bottom: 0;
+  }
+  .nav-item{
+    margin: 10px;
+  }
+  footer-icons a:hover{
+    color: #e50914;
+  }
+  @media (max-width: 576px) {
+    .franchise-card {
+      height: 200px;
+    }
+  }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark px-4" style="background-color: #111;">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand d-flex flex-column" href="/index.html">
+      <span style="font-family: 'Bebas Neue', sans-serif; font-size: 28px;">
+        <span style="color: white;">Cine</span><span style="color: red;">Soul</span>
+      </span>
+      <span style="font-size: 8px; color: #ccc;margin-top: -5px;">The List You Asked For</span>
+    </a>
+
+    <!-- Toggle for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link text-white" target="_blank" href="/Dashboard.html">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a href="/add.html">
+                      <button class="btn btn-danger mx-2" target="_blank">Add</button>
+          </a>
+        </li>
+<li class="nav-item">
+  <div class="rdj-ring">
+    <img src="https://pbs.twimg.com/media/E5mNwFyVUAgnchN?format=jpg&name=large" alt="Profile">
+  </div>
+</li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <!-- Hero Section -->
+<section class="hero">
+  <div class="hero-content text-center">
+
+    <h4 class="display-5 fw-bold">
+      "Every frame I watched built a piece of who I am — welcome to the world that shaped me."
+    </h4>
+    <a href="#fav" style="margin-left: -70px; text-decoration: none;">
+
+      <button class="btn btn-play mt-4">
+     Explore
+      </button>
+    </a>
+     
+  </div>
+</section>
+
+  <section class="container mt-5" id="fav">
+    <h3 class="mb-4">Recent Fav</h3>
+    <div class="row g-3">
+      <!-- Poster Cards -->
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://4kwallpapers.com/images/wallpapers/f1-the-movie-8k-768x1024-22458.jpg" class="img-fluid" alt="John Wick">
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://images.moviesanywhere.com/9a8aaee919659e284f9f348e78e10d64/52333bf4-ed20-4399-82c1-3aaf02be3aab.jpg" class="img-fluid" alt="Baby Driver">
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://preview.redd.it/converted-the-superman-poster-into-a-mobile-wallpaper-v0-z3papfkm0a7e1.png?width=640&crop=smart&auto=webp&s=cf8fe358a48ae1118392d9a9ca9850641e8fbb96" class="img-fluid" alt="Casablanca">
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p7876870_p_v8_ah.jpg" class="img-fluid" alt="Blade Runner">
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWmNFRf3qC6KYNXQoK3oPPbi03fTtw5BNHrg&s" class="img-fluid" alt="Bohemian Rhapsody">
+      </div>
+      <div class="col-6 col-md-3 col-lg-2 poster-card">
+        <img src="https://m.media-amazon.com/images/M/MV5BODVjNjQwOWItYzU1OC00NjViLTg3MzQtYmY2ZmIxYjYxNTBlXkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg" class="img-fluid" alt="Brave">
+      </div>
+
+    </div>
+  </section>
+
+  <section class=" mt-5 p-5" style="background-color: #333333;width: 100%;">
+    <h3 class="mb-4 ms-5">Fav Animes</h3>
+    <div id="animeCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <!-- My Hero Academia with No.1 Label -->
+            <div class="position-relative">
+              <img src="https://i.pinimg.com/736x/80/6a/75/806a7550dacc3af0fe2b8b8f4914d92a.jpg" alt="My Hero Academia" class="anime-card">
+              <div class="no1-badge">No.1</div>
+            </div>
+            
+            <!-- Other animes -->
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2XWaDcMJ8pvENRcwCZiSYxV83Ni9bzA8yuA&s" alt="Solo Leveling" class="anime-card">
+            <img src="https://i.pinimg.com/736x/6e/71/6f/6e716fa2ac9a428e62eb08a741500d66.jpg" alt="Attack on Titan" class="anime-card">
+            <img src="https://i.pinimg.com/736x/1a/19/67/1a19673bb91c5e9344f5ee2b2549a35c.jpg" alt="Death Note" class="anime-card">
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <img src="https://i.pinimg.com/736x/4b/ea/7d/4bea7dafe96ab03b06b45504a3720cd6.jpg" alt="Demon Slayer" class="anime-card">
+            <img src="https://i.pinimg.com/1200x/0c/dc/5d/0cdc5d9f658ee8fb4f55fe47282c1bb3.jpg" alt="Jujutsu Kaisen" class="anime-card">
+            <img src="https://i.pinimg.com/736x/2f/e7/53/2fe75397b1a02d15168724510466aee6.jpg" alt="Chainsaw Man" class="anime-card">
+            <img src="https://i.pinimg.com/736x/59/f9/48/59f94879ad3b4532ebeaa12e88903fab.jpg" alt="Vinland Saga" class="anime-card">
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <img src="https://i.pinimg.com/736x/38/f8/b1/38f8b12f5a705e0516040275c623f0a4.jpg" alt="Black Clover" class="anime-card">
+            <img src="https://i.pinimg.com/736x/6f/46/64/6f4664d8112c3693eb688a5365c4e858.jpg" alt="Haikyuu!!" class="anime-card">
+            <img src="https://i.pinimg.com/736x/5b/cc/45/5bcc45333ab2356dd0e34d8771d3f8e1.jpg" alt="Haikyuu!!" class="anime-card">
+            <img src="https://i.pinimg.com/1200x/0f/7f/fb/0f7ffbc6ca3b4a8301879f7a7c9b89c1.jpg" alt="Haikyuu!!" class="anime-card">
+
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#animeCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#animeCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </section>
+  
+  <!-- Dashboard Section -->
+<!-- Movie Dashboard Section -->
+<section class="container-fluid py-5" style="background-color: #111;">
+  <div class="container text-white">
+    <h3 class="mb-4">Watched Movies Dashboard</h3>
+
+    <!-- Movie Grid 4x5 -->
+    <div class="row g-3">
+      <!-- Movie Cards (20 items) -->
+      <!-- Just repeat this card block and update index + title -->
+      <!-- We'll do it manually for the first 20 -->
+      <!-- Replace genre with actual genre later -->
+      <!-- You can later loop this via JS for automation -->
+
+      <!-- 1 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #9C27B0;">
+          <h6 class="mb-1">1. Feel the Beat</h6>
+          <small>Genre: Drama</small>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #FF5722;">
+          <h6 class="mb-1">2. 10 Things I Hate About You</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #3F51B5;">
+          <h6 class="mb-1">3. The Notebook</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #009688;">
+          <h6 class="mb-1">4. Crazy, Stupid, Love</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #F44336;">
+          <h6 class="mb-1">5. The Proposal</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #673AB7;">
+          <h6 class="mb-1">6. She's the Man</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 7 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #E91E63;">
+          <h6 class="mb-1">7. Life List</h6>
+          <small>Genre: Adventure</small>
+        </div>
+      </div>
+
+      <!-- 8 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #00BCD4;">
+          <h6 class="mb-1">8. She's Out of My League</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 9 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #CDDC39;">
+          <h6 class="mb-1">9. The Switch</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 10 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #FFC107;">
+          <h6 class="mb-1">10. The Girl Next Door</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 11 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #4CAF50;">
+          <h6 class="mb-1">11. Just Friends</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 12 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #2196F3;">
+          <h6 class="mb-1">12. Yes Man</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 13 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #FF9800;">
+          <h6 class="mb-1">13. The Wedding Date</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 14 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #795548;">
+          <h6 class="mb-1">14. Easy A</h6>
+          <small>Genre: Teen</small>
+        </div>
+      </div>
+
+      <!-- 15 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #9E9E9E;">
+          <h6 class="mb-1">15. Upgraded</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 16 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #607D8B;">
+          <h6 class="mb-1">16. Anyone But You</h6>
+          <small>Genre: Comedy</small>
+        </div>
+      </div>
+
+      <!-- 17 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #8BC34A;">
+          <h6 class="mb-1">17. Hit Man</h6>
+          <small>Genre: Crime</small>
+        </div>
+      </div>
+
+      <!-- 18 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #F06292;">
+          <h6 class="mb-1">18. 17 Again</h6>
+          <small>Genre: Fantasy</small>
+        </div>
+      </div>
+
+      <!-- 19 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #BA68C8;">
+          <h6 class="mb-1">19. Notting Hill</h6>
+          <small>Genre: Romance</small>
+        </div>
+      </div>
+
+      <!-- 20 -->
+      <div class="col-6 col-md-3">
+        <div class="p-3 rounded text-white movie-card" style="background-color: #FF7043;">
+          <h6 class="mb-1">20. Before We Go</h6>
+          <small>Genre: Drama</small>
+        </div>
+      </div>
+    </div>
+
+  
+
+    <!-- View Full List Button -->
+    <div class="text-center mt-4">
+      <a href="/Dashboard.html">
+        <button class=" btn btn-play me-2">View Full List</button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Favorite Franchises Section -->
+<section class="container mt-5">
+  <h3 class="mb-4 text-white">Favorite Franchises</h3>
+  <div class="row g-4">
+    <!-- Franchise Card -->
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/736x/60/54/ec/6054ecd004b9552a7561c6e7679ab407.jpg');">
+          </div>
+          <div class="card-back text-white">
+            <h5>🛡️ Marvel Cinematic Universe</h5>
+            <p>🎬 Movies: 33<br>📺 Series: 8+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Repeat Franchise Cards Below -->
+
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/1200x/ea/da/9c/eada9c54d4feec923cff118789d26194.jpg');"></div>
+          <div class="card-back text-white">
+            <h5>🦸‍♂️ DC Universe</h5>
+            <p>🎬 Movies: 18<br>📺 Series: 12+</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/1200x/1f/d0/bb/1fd0bbfbc93c10467f3a6481bc2860ed.jpg');"></div>
+          <div class="card-back text-white">
+            <h5>🚗 Fast & Furious</h5>
+            <p>🎬 Movies: 10 (+1 Spin-off)<br>📺 Series: 1 (Animated)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/1200x/4f/2a/85/4f2a85175004027b3bf16cc08260117f.jpg');"></div>
+          <div class="card-back text-white">
+            <h5>☠️ Pirates of the Caribbean</h5>
+            <p>🎬 Movies: 5<br>📺 Series: 0</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="container mt-5">
+  <div class="row justify-content-center g-4">
+    <!-- Harry Potter -->
+    <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/736x/83/5e/2c/835e2cbf2a08ccb33076141b86e7ceeb.jpg');"></div>
+          <div class="card-back text-white">
+            <h5>⚡ Harry Potter (Wizarding World)</h5>
+            <p>🎬 Movies: 8 (HP) + 3 (FB)<br>📺 Series: Upcoming HBO series</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Transformers -->
+    <div class="col-10 col-sm-6 col-md-4 col-lg-3">
+      <div class="franchise-card">
+        <div class="card-inner">
+          <div class="card-front" style="background-image: url('https://i.pinimg.com/736x/b9/5f/a6/b95fa63a1ca078f06e2088ac57a3cbc1.jpg');"></div>
+          <div class="card-back text-white">
+            <h5>⚙️ Transformers</h5>
+            <p>🎬 Movies: 7<br>📺 Series: 10+ (Animated/Live)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="mt-5 p-5" style="background-color: #333333; width: 100%;">
+  <h3 class="mb-4 ms-5 text-white">Series I Admire</h3>
+
+  <div id="seriesCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <!-- Slide 1 -->
+      <div class="carousel-item active">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <!-- Card Template -->
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/05/83/30/058330f28c9eab0a85e1f493400f1b82.jpg" alt="Stranger Things" class="series-card">
+            <div class="series-info">
+              <strong>Stranger Things</strong><br>
+              Seasons: 4 | Episodes: 34<br>
+              Total: ~30 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/79/24/35/7924358c350d8239648bfd42f72626ef.jpg" alt="Game of Thrones" class="series-card">
+            <div class="series-info">
+              <strong>Game of Thrones</strong><br>
+              Seasons: 8 | Episodes: 73<br>
+              Total: ~70 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/ab/e8/65/abe8656b74d60ad8c64d58cfe0bf22d7.jpg" alt="Cobra Kai" class="series-card">
+            <div class="series-info">
+              <strong>Cobra Kai</strong><br>
+              Seasons: 5 | Episodes: 50<br>
+              Total: ~25 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/80/5a/81/805a81cf59163e1cd27d51aafa3627a5.jpg" alt="The Flash" class="series-card">
+            <div class="series-info">
+              <strong>The Flash</strong><br>
+              Seasons: 9 | Episodes: 184<br>
+              Total: ~130 hours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-item">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/8d/e8/f7/8de8f7b88dc557fad46689124799aaa4.jpg" alt="Ted Lasso" class="series-card">
+            <div class="series-info">
+              <strong>Ted Lasso</strong><br>
+              Seasons: 3 | Episodes: 34<br>
+              Total: ~20 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/6e/42/0b/6e420b7bd2a65359258ee4c5ee1501dd.jpg" alt="Money Heist" class="series-card">
+            <div class="series-info">
+              <strong>Money Heist</strong><br>
+              Seasons: 5 | Episodes: 41<br>
+              Total: ~35 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/2e/d1/65/2ed165157572bec7f8f4017188118c9a.jpg" alt="9-1-1" class="series-card">
+            <div class="series-info">
+              <strong>9-1-1</strong><br>
+              Seasons: 7 | Episodes: 96<br>
+              Total: ~65 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/ae/8f/4f/ae8f4ffa01200e177e5e67094cea0ac4.jpg" alt="911 Lone Star" class="series-card">
+            <div class="series-info">
+              <strong>911: Lone Star</strong><br>
+              Seasons: 4 | Episodes: 62<br>
+              Total: ~45 hours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-item">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/ba/38/da/ba38da2a9b3e503efb94a432dc645654.jpg" alt="The Bear" class="series-card">
+            <div class="series-info">
+              <strong>The Bear</strong><br>
+              Seasons: 2 | Episodes: 18<br>
+              Total: ~12 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS262pGJ_lOiwVxCHtNNXMi4CZVaUofkfeVKA&s" alt="FROM" class="series-card">
+            <div class="series-info">
+              <strong>FROM</strong><br>
+              Seasons: 2 | Episodes: 20<br>
+              Total: ~16 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/b1/57/a8/b157a8f114475bb263102568ecbaca69.jpg" alt="Arrow" class="series-card">
+            <div class="series-info">
+              <strong>Arrow</strong><br>
+              Seasons: 8 | Episodes: 170<br>
+              Total: ~120 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/9f/f6/de/9ff6dee5e5fa33c92093f631308ab07f.jpg" alt="Teen Wolf" class="series-card">
+            <div class="series-info">
+              <strong>Teen Wolf</strong><br>
+              Seasons: 6 | Episodes: 100<br>
+              Total: ~70 hours
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="carousel-item">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/02/52/f6/0252f680340ddf388dab81a01976fb2d.jpg" alt="Wednesday" class="series-card">
+            <div class="series-info">
+              <strong>Wednesday</strong><br>
+              Seasons: 1 | Episodes: 8<br>
+              Total: ~6 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/1200x/8e/8a/9a/8e8a9a5d8f6cbdc49d889c0720ae680c.jpg" alt="Arcane" class="series-card">
+            <div class="series-info">
+              <strong>Arcane</strong><br>
+              Seasons: 1 | Episodes: 9<br>
+              Total: ~8 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/52/12/f8/5212f85ad64fecdb0178dc1f8674ea38.jpg" alt="Sex Education" class="series-card">
+            <div class="series-info">
+              <strong>Sex Education</strong><br>
+              Seasons: 4 | Episodes: 32<br>
+              Total: ~26 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/30/72/6d/30726dd11c0f4411f0e03219b1c0e5d6.jpg" alt="The Boys" class="series-card">
+            <div class="series-info">
+              <strong>The Boys</strong><br>
+             Seasons: 4 | Episodes: 32<br>
+              Total: ~32 hours
+            </div>
+          </div>
+
+          <div class="series-card-container">
+            <img src="https://i.pinimg.com/736x/68/d1/d9/68d1d9845dd2b99b9cee8506b23c1659.jpg" alt="Lost" class="series-card">
+            <div class="series-info">
+              <strong>Lost</strong><br>
+              Seasons: 6 | Episodes: 121<br>
+              Total: ~90 hours
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button class="carousel-control-prev" type="button" data-bs-target="#seriesCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#seriesCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+
+<p style="font-size: 14px; color: #aaa; text-align: center; margin-top: 10px;padding: 15px;">
+  🕒 Approximate Time Spent Watching All 30 Series: 
+  <span style="color: red; font-weight: bold;">~1,430 hours</span> → That’s 
+  <span style="color: red; font-weight: bold;">~60 full days</span> of continuous binge-watching! 😮📺🍿
+</p>
+  </div>
+</section>
+<section class="container mt-5 p-4" style="background-color: #111; color: #ccc; border: 1px solid #444; border-radius: 12px; margin-bottom: 20px;">
+  <div class="row align-items-center">
+    <!-- Left Image -->
+    <div class="col-md-4 text-center mb-4 mb-md-0">
+      <img src="https://i.pinimg.com/736x/95/e5/b4/95e5b4f3af89829067e1182585f0c5d3.jpg" alt="CineCrafter" class="img-fluid rounded" style=" max-height: 350px; object-fit: cover;">
+    </div>
+
+    <!-- Right Text -->
+    <div class="col-md-8">
+      <h3 class="mb-3">Meet <span style="color: #e50914;">The GuyWhoRewatches</span></h3>
+      <p style="font-size: 1.1rem; line-height: 1.6;">
+        A creator of moods, a collector of emotions, and a lover of storytelling — I am not just a movie buff, I'm <strong>The CineCrafter</strong>.  
+        From intense thrillers to slice-of-life animes, from Hollywood blockbusters to indie gems, I’ve watched, loved, and lived every frame.  
+        <br><br>
+        This space, <strong>Cinesoul by RDJ</strong>, is my digital shelf — a curated collection of all the stories that moved me, thrilled me, and left a mark on my soul. 🎥🍿  
+        If you're here, you love cinema just like me. Welcome to the club.
+      </p>
+    </div>
+  </div>
+</section>
+<!-- Footer Section -->
+<footer style="background-color: #333333;padding: 30px; height: 50%; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <div class="text-center px-3">
+    <h5 class="fw-bold mb-3">"<span style="color: #e50914;">CineSoul</span> isn't just a tracker — it's a reflection of your cinematic journey."</h5>
+    
+    <!-- Social Icons -->
+    <div class="d-flex justify-content-center gap-4 mt-3 footer-icons">
+      <a href="https://instagram.com/yourprofile" target="_blank" class="footer-icon text-white fs-4">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="https://twitter.com/yourprofile" target="_blank" class="footer-icon text-white fs-4">
+        <i class="fab fa-twitter"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
